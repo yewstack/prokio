@@ -140,6 +140,7 @@ impl Runtime {
     /// This can be used to execute non-Send futures without blocking the current thread.
     ///
     /// [`spawn_local`] is available with tasks executed with `spawn_pinned`.
+    #[inline(always)]
     pub fn spawn_pinned<F, Fut>(&self, create_task: F)
     where
         F: FnOnce() -> Fut,
@@ -188,6 +189,7 @@ impl LocalHandle {
     }
 
     /// Spawns a Future with current Runtime worker.
+    #[inline(always)]
     pub fn spawn_local<F>(&self, f: F)
     where
         F: Future<Output = ()> + 'static,

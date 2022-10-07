@@ -123,7 +123,7 @@ impl LocalHandle {
     }
 
     pub fn current() -> Self {
-        Self::try_current().expect("outside of Yew runtime.")
+        Self::try_current().expect("outside of prokio runtime.")
     }
 
     pub fn spawn_local<F>(&self, f: F)
