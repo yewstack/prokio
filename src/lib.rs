@@ -71,7 +71,7 @@ mod imp;
 ///
 /// # Panics
 ///
-/// This function will panic when not being executed from within a Yew Application.
+/// This function will panic when not being executed from within the prokio runtime.
 #[inline(always)]
 pub fn spawn_local<F>(f: F)
 where
@@ -165,7 +165,7 @@ impl LocalHandle {
     ///
     /// # Panics
     ///
-    /// This method will panic if not called within Yew Runtime.
+    /// This method will panic if not called within prokio Runtime.
     pub fn current() -> Self {
         let inner = imp::LocalHandle::current();
 
@@ -177,7 +177,7 @@ impl LocalHandle {
 
     /// Creates a Handle to current Runtime worker.
     ///
-    /// This methods will return `None` if called from outside Yew Runtime.
+    /// This methods will return `None` if called from outside prokio Runtime.
     pub fn try_current() -> Option<Self> {
         let inner = imp::LocalHandle::try_current()?;
 

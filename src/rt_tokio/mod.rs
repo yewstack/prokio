@@ -24,7 +24,7 @@ where
 {
     match LocalHandle::try_current() {
         Some(m) => {
-            // If within a Yew runtime, use a local handle increases the local task count.
+            // If within a prokio runtime, use a local handle increases the local task count.
             m.spawn_local(f);
         }
         None => {
@@ -165,8 +165,8 @@ mod tests {
             tokio::task::spawn(async move {
                 // tokio::task::spawn_local cannot spawn tasks outside of a local context.
                 //
-                // yew::platform::spawn_local can spawn tasks within a Send task as long as running
-                // under a Yew Runtime.
+                // prokio::spawn_local can spawn tasks within a Send task as long as running
+                // under a Prokio Runtime.
                 spawn_local(async move {
                     tx.send(()).expect("failed to send!");
                 })

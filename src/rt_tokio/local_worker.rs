@@ -12,7 +12,7 @@ use std::marker::PhantomData;
 use std::sync::Arc;
 use std::{io, thread};
 
-static DEFAULT_WORKER_NAME: &str = "yew-runtime-worker";
+static DEFAULT_WORKER_NAME: &str = "prokio-runtime-worker";
 
 use std::sync::atomic::{AtomicUsize, Ordering};
 
