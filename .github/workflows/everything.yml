@@ -21,6 +21,13 @@ jobs:
           components: rustfmt, clippy
           profile: minimal
 
+      - name: Setup WebAssembly Target
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          profile: minimal
+
       - name: Restore Rust Cache
         uses: Swatinem/rust-cache@v1
 
