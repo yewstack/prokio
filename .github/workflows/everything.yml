@@ -29,7 +29,7 @@ jobs:
           profile: minimal
 
       - name: Restore Rust Cache
-        uses: Swatinem/rust-cache@v1
+        uses: Swatinem/rust-cache@v2
 
       - name: Run Lints
         if: github.event_name == 'push'
@@ -71,7 +71,7 @@ jobs:
           profile: minimal
 
       - name: Restore Rust Cache
-        uses: Swatinem/rust-cache@v1
+        uses: Swatinem/rust-cache@v2
 
       - name: Run Tests
         run: cargo test --all-features
@@ -98,7 +98,7 @@ jobs:
           profile: minimal
 
       - name: Restore Rust Cache
-        uses: Swatinem/rust-cache@v1
+        uses: Swatinem/rust-cache@v2
 
       - name: Run cargo publish --dry-run
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
