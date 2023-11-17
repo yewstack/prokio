@@ -12,13 +12,21 @@ repository = "https://github.com/futursolo/prokio"
 rust-version = "1.60.0"
 
 [dependencies]
-futures = { version = "0.3", default-features = false, features = ["std", "async-await"] }
+futures = { version = "0.3", default-features = false, features = [
+  "std",
+  "async-await",
+] }
 pin-project = "1.0.11"
 pinned = "0.1.0"
 
-[target.'cfg(target_arch = "wasm32")'.dependencies]
+[target.'cfg(all(target_arch = "wasm32", not(feature = "wasi")))'.dependencies]
 wasm-bindgen-futures = "0.4"
 gloo = "0.8"
+
+[target.'cfg(all(target_arch = "wasm32", feature = "wasi"))'.dependencies]
+once_cell = "1"
+tokio_wasi = { version = "1.25", features = ["rt", "time"] }
+tokio-stream_wasi = { version = "0.1", features = ["time"] }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 num_cpus = "1.13"
@@ -31,6 +39,7 @@ tokio = { version = "1.19", features = ["full"] }
 
 [features]
 default = []
+wasi = []
 
 [package.metadata.docs.rs]
 all-features = true
