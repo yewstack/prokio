@@ -56,10 +56,10 @@ pub mod fmt;
 pub mod pinned;
 pub mod time;
 
-#[cfg(all(target_arch = "wasm32", not(feature = "wasi")))]
+#[cfg(all(target_arch = "wasm32", not(target_os = "wasi")))]
 #[path = "rt_wasm_bindgen/mod.rs"]
 mod imp;
-#[cfg(all(target_arch = "wasm32", feature = "wasi"))]
+#[cfg(all(target_arch = "wasm32", target_os = "wasi"))]
 #[path = "rt_tokio_wasi/mod.rs"]
 mod imp;
 #[cfg(not(target_arch = "wasm32"))]
