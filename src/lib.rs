@@ -59,10 +59,7 @@ pub mod time;
 #[cfg(all(target_arch = "wasm32", not(target_os = "wasi")))]
 #[path = "rt_wasm_bindgen/mod.rs"]
 mod imp;
-#[cfg(all(target_arch = "wasm32", target_os = "wasi"))]
-#[path = "rt_tokio_wasi/mod.rs"]
-mod imp;
-#[cfg(not(target_arch = "wasm32"))]
+#[cfg(any(not(target_arch = "wasm32"), target_os = "wasi"))]
 #[path = "rt_tokio/mod.rs"]
 mod imp;
 
