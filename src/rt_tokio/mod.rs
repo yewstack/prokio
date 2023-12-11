@@ -14,7 +14,15 @@ use local_worker::LocalWorker;
 pub(crate) fn get_default_runtime_size() -> usize {
     // We use num_cpus as std::thread::available_parallelism() does not take
     // system resource constraint (e.g.: cgroups) into consideration.
-    num_cpus::get()
+    #[cfg(not(target_os = "wasi"))]
+    {
+        num_cpus::get()
+    }
+    // WASI does not support multi-threading at this moment.
+    #[cfg(target_os = "wasi")]
+    {
+        1
+    }
 }
 
 #[inline(always)]
