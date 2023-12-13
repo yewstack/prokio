@@ -195,6 +195,9 @@ impl LocalHandle {
                 m.spawn_local(f);
             }
             LocalHandleInner::Main => {
+                // For platforms without multi threading support, we assume a behaviour similar to
+                // wasm-bindgen-futures, where the main function is running under a tokio local set
+                // and tokio::task::spawn_local is available for the entire program.
                 tokio::task::spawn_local(f);
             }
         }
